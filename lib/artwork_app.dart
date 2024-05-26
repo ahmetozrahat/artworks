@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import 'features/artworks/artworks_page.dart';
+import 'features/artworks/presentation/artworks_page.dart';
 import 'routes.dart';
 
 class ArtworkApp extends StatelessWidget {

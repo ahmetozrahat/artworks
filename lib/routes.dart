@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'features/artworks/artworks_page.dart';
+import 'features/artworks/presentation/artworks_page.dart';
 
 class Routes {
   static Map<String, StatefulWidget Function(dynamic)> routes(
