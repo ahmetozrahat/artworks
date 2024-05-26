@@ -22,6 +22,10 @@ Artwork _$ArtworkFromJson(Map<String, dynamic> json) {
 mixin _$Artwork {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  Thumbnail get thumbnail => throw _privateConstructorUsedError;
+  String get imageId => throw _privateConstructorUsedError;
+  String? get dateDisplay => throw _privateConstructorUsedError;
+  String? get artistTitle => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +37,15 @@ abstract class $ArtworkCopyWith<$Res> {
   factory $ArtworkCopyWith(Artwork value, $Res Function(Artwork) then) =
       _$ArtworkCopyWithImpl<$Res, Artwork>;
   @useResult
-  $Res call({int id, String title});
+  $Res call(
+      {int id,
+      String title,
+      Thumbnail thumbnail,
+      String imageId,
+      String? dateDisplay,
+      String? artistTitle});
+
+  $ThumbnailCopyWith<$Res> get thumbnail;
 }
 
 /// @nodoc
@@ -51,6 +63,10 @@ class _$ArtworkCopyWithImpl<$Res, $Val extends Artwork>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? thumbnail = null,
+    Object? imageId = null,
+    Object? dateDisplay = freezed,
+    Object? artistTitle = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -61,7 +77,31 @@ class _$ArtworkCopyWithImpl<$Res, $Val extends Artwork>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      thumbnail: null == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
+              as Thumbnail,
+      imageId: null == imageId
+          ? _value.imageId
+          : imageId // ignore: cast_nullable_to_non_nullable
+              as String,
+      dateDisplay: freezed == dateDisplay
+          ? _value.dateDisplay
+          : dateDisplay // ignore: cast_nullable_to_non_nullable
+              as String?,
+      artistTitle: freezed == artistTitle
+          ? _value.artistTitle
+          : artistTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ThumbnailCopyWith<$Res> get thumbnail {
+    return $ThumbnailCopyWith<$Res>(_value.thumbnail, (value) {
+      return _then(_value.copyWith(thumbnail: value) as $Val);
+    });
   }
 }
 
@@ -72,7 +112,16 @@ abstract class _$$ArtworkImplCopyWith<$Res> implements $ArtworkCopyWith<$Res> {
       __$$ArtworkImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String title});
+  $Res call(
+      {int id,
+      String title,
+      Thumbnail thumbnail,
+      String imageId,
+      String? dateDisplay,
+      String? artistTitle});
+
+  @override
+  $ThumbnailCopyWith<$Res> get thumbnail;
 }
 
 /// @nodoc
@@ -88,6 +137,10 @@ class __$$ArtworkImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? thumbnail = null,
+    Object? imageId = null,
+    Object? dateDisplay = freezed,
+    Object? artistTitle = freezed,
   }) {
     return _then(_$ArtworkImpl(
       id: null == id
@@ -98,6 +151,22 @@ class __$$ArtworkImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      thumbnail: null == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
+              as Thumbnail,
+      imageId: null == imageId
+          ? _value.imageId
+          : imageId // ignore: cast_nullable_to_non_nullable
+              as String,
+      dateDisplay: freezed == dateDisplay
+          ? _value.dateDisplay
+          : dateDisplay // ignore: cast_nullable_to_non_nullable
+              as String?,
+      artistTitle: freezed == artistTitle
+          ? _value.artistTitle
+          : artistTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -106,7 +175,13 @@ class __$$ArtworkImplCopyWithImpl<$Res>
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$ArtworkImpl implements _Artwork {
-  const _$ArtworkImpl({required this.id, required this.title});
+  const _$ArtworkImpl(
+      {required this.id,
+      required this.title,
+      required this.thumbnail,
+      required this.imageId,
+      this.dateDisplay,
+      this.artistTitle});
 
   factory _$ArtworkImpl.fromJson(Map<String, dynamic> json) =>
       _$$ArtworkImplFromJson(json);
@@ -115,10 +190,18 @@ class _$ArtworkImpl implements _Artwork {
   final int id;
   @override
   final String title;
+  @override
+  final Thumbnail thumbnail;
+  @override
+  final String imageId;
+  @override
+  final String? dateDisplay;
+  @override
+  final String? artistTitle;
 
   @override
   String toString() {
-    return 'Artwork(id: $id, title: $title)';
+    return 'Artwork(id: $id, title: $title, thumbnail: $thumbnail, imageId: $imageId, dateDisplay: $dateDisplay, artistTitle: $artistTitle)';
   }
 
   @override
@@ -127,12 +210,20 @@ class _$ArtworkImpl implements _Artwork {
         (other.runtimeType == runtimeType &&
             other is _$ArtworkImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title));
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.thumbnail, thumbnail) ||
+                other.thumbnail == thumbnail) &&
+            (identical(other.imageId, imageId) || other.imageId == imageId) &&
+            (identical(other.dateDisplay, dateDisplay) ||
+                other.dateDisplay == dateDisplay) &&
+            (identical(other.artistTitle, artistTitle) ||
+                other.artistTitle == artistTitle));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title);
+  int get hashCode => Object.hash(
+      runtimeType, id, title, thumbnail, imageId, dateDisplay, artistTitle);
 
   @JsonKey(ignore: true)
   @override
@@ -149,8 +240,13 @@ class _$ArtworkImpl implements _Artwork {
 }
 
 abstract class _Artwork implements Artwork {
-  const factory _Artwork({required final int id, required final String title}) =
-      _$ArtworkImpl;
+  const factory _Artwork(
+      {required final int id,
+      required final String title,
+      required final Thumbnail thumbnail,
+      required final String imageId,
+      final String? dateDisplay,
+      final String? artistTitle}) = _$ArtworkImpl;
 
   factory _Artwork.fromJson(Map<String, dynamic> json) = _$ArtworkImpl.fromJson;
 
@@ -158,6 +254,14 @@ abstract class _Artwork implements Artwork {
   int get id;
   @override
   String get title;
+  @override
+  Thumbnail get thumbnail;
+  @override
+  String get imageId;
+  @override
+  String? get dateDisplay;
+  @override
+  String? get artistTitle;
   @override
   @JsonKey(ignore: true)
   _$$ArtworkImplCopyWith<_$ArtworkImpl> get copyWith =>

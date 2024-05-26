@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'thumbnail.dart';
+
 part 'artwork.freezed.dart';
 part 'artwork.g.dart';
 
@@ -9,6 +11,10 @@ class Artwork with _$Artwork {
   const factory Artwork({
     required int id,
     required String title,
+    required Thumbnail thumbnail,
+    required String imageId,
+    String? dateDisplay,
+    String? artistTitle,
   }) = _Artwork;
 
   factory Artwork.fromJson(Map<String, dynamic> json) =>

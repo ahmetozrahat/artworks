@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../bloc/artworks_bloc.dart';
+import 'widgets/artwork_card.dart';
 
 class ArtworksPage extends StatefulWidget {
   const ArtworksPage({super.key});
@@ -16,11 +18,16 @@ class _ArtworksPageState extends State<ArtworksPage> {
   final _artworksBloc = ArtworksBloc();
 
   Widget _buildUi() => _artworksBloc.state.maybeWhen(
-        success: (artworkResponse) => ListView.builder(
+        success: (artworkResponse) => MasonryGridView.count(
+          crossAxisCount: 2,
+          mainAxisSpacing: 8,
+          crossAxisSpacing: 8,
           itemCount: artworkResponse.artworks.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(artworkResponse.artworks[index].title),
+            var artwork = artworkResponse.artworks[index];
+            return ArtworkCard(
+              artwork: artwork,
+              onPressed: (id) => debugPrint("Artworkd id: $id"),
             );
           },
         ),
