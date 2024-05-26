@@ -1,5 +1,5 @@
-import '../../../model/paginated_response.dart';
+import '../data/remote/artwork_response.dart';
 
 abstract class ArtworksRepository {
-  Future<PaginatedResponse<String>> getArtworks();
+  Future<ArtworkResponse> getArtworks();
 }

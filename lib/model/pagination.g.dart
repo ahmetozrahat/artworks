@@ -1,14 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'paginated_response.dart';
+part of 'pagination.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PaginatedResponseImpl<T> _$$PaginatedResponseImplFromJson<T>(
-        Map<String, dynamic> json) =>
-    _$PaginatedResponseImpl<T>(
+_$PaginationImpl _$$PaginationImplFromJson(Map<String, dynamic> json) =>
+    _$PaginationImpl(
       total: (json['total'] as num).toInt(),
       limit: (json['limit'] as num).toInt(),
       offset: (json['offset'] as num).toInt(),
@@ -17,8 +16,7 @@ _$PaginatedResponseImpl<T> _$$PaginatedResponseImplFromJson<T>(
       nextUrl: json['next_url'] as String,
     );
 
-Map<String, dynamic> _$$PaginatedResponseImplToJson<T>(
-        _$PaginatedResponseImpl<T> instance) =>
+Map<String, dynamic> _$$PaginationImplToJson(_$PaginationImpl instance) =>
     <String, dynamic>{
       'total': instance.total,
       'limit': instance.limit,
