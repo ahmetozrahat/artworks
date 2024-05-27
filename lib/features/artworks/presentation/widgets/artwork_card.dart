@@ -22,9 +22,12 @@ class ArtworkCard extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.network(
-                  Helpers.getArtworkImageUrl(artwork.imageId),
-                  semanticLabel: artwork.thumbnail.altText,
+                child: Hero(
+                  tag: artwork.id,
+                  child: Image.network(
+                    Helpers.getArtworkImageUrl(artwork.imageId),
+                    semanticLabel: artwork.thumbnail.altText,
+                  ),
                 ),
               ),
               Padding(
