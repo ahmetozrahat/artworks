@@ -15,6 +15,8 @@ class Artwork with _$Artwork {
     required String imageId,
     String? dateDisplay,
     String? artistTitle,
+    String? artistDisplay,
+    String? description,
   }) = _Artwork;
 
   factory Artwork.fromJson(Map<String, dynamic> json) =>

@@ -26,6 +26,8 @@ mixin _$Artwork {
   String get imageId => throw _privateConstructorUsedError;
   String? get dateDisplay => throw _privateConstructorUsedError;
   String? get artistTitle => throw _privateConstructorUsedError;
+  String? get artistDisplay => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +45,9 @@ abstract class $ArtworkCopyWith<$Res> {
       Thumbnail thumbnail,
       String imageId,
       String? dateDisplay,
-      String? artistTitle});
+      String? artistTitle,
+      String? artistDisplay,
+      String? description});
 
   $ThumbnailCopyWith<$Res> get thumbnail;
 }
@@ -67,6 +71,8 @@ class _$ArtworkCopyWithImpl<$Res, $Val extends Artwork>
     Object? imageId = null,
     Object? dateDisplay = freezed,
     Object? artistTitle = freezed,
+    Object? artistDisplay = freezed,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -93,6 +99,14 @@ class _$ArtworkCopyWithImpl<$Res, $Val extends Artwork>
           ? _value.artistTitle
           : artistTitle // ignore: cast_nullable_to_non_nullable
               as String?,
+      artistDisplay: freezed == artistDisplay
+          ? _value.artistDisplay
+          : artistDisplay // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -118,7 +132,9 @@ abstract class _$$ArtworkImplCopyWith<$Res> implements $ArtworkCopyWith<$Res> {
       Thumbnail thumbnail,
       String imageId,
       String? dateDisplay,
-      String? artistTitle});
+      String? artistTitle,
+      String? artistDisplay,
+      String? description});
 
   @override
   $ThumbnailCopyWith<$Res> get thumbnail;
@@ -141,6 +157,8 @@ class __$$ArtworkImplCopyWithImpl<$Res>
     Object? imageId = null,
     Object? dateDisplay = freezed,
     Object? artistTitle = freezed,
+    Object? artistDisplay = freezed,
+    Object? description = freezed,
   }) {
     return _then(_$ArtworkImpl(
       id: null == id
@@ -167,6 +185,14 @@ class __$$ArtworkImplCopyWithImpl<$Res>
           ? _value.artistTitle
           : artistTitle // ignore: cast_nullable_to_non_nullable
               as String?,
+      artistDisplay: freezed == artistDisplay
+          ? _value.artistDisplay
+          : artistDisplay // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -181,7 +207,9 @@ class _$ArtworkImpl implements _Artwork {
       required this.thumbnail,
       required this.imageId,
       this.dateDisplay,
-      this.artistTitle});
+      this.artistTitle,
+      this.artistDisplay,
+      this.description});
 
   factory _$ArtworkImpl.fromJson(Map<String, dynamic> json) =>
       _$$ArtworkImplFromJson(json);
@@ -198,10 +226,14 @@ class _$ArtworkImpl implements _Artwork {
   final String? dateDisplay;
   @override
   final String? artistTitle;
+  @override
+  final String? artistDisplay;
+  @override
+  final String? description;
 
   @override
   String toString() {
-    return 'Artwork(id: $id, title: $title, thumbnail: $thumbnail, imageId: $imageId, dateDisplay: $dateDisplay, artistTitle: $artistTitle)';
+    return 'Artwork(id: $id, title: $title, thumbnail: $thumbnail, imageId: $imageId, dateDisplay: $dateDisplay, artistTitle: $artistTitle, artistDisplay: $artistDisplay, description: $description)';
   }
 
   @override
@@ -217,13 +249,17 @@ class _$ArtworkImpl implements _Artwork {
             (identical(other.dateDisplay, dateDisplay) ||
                 other.dateDisplay == dateDisplay) &&
             (identical(other.artistTitle, artistTitle) ||
-                other.artistTitle == artistTitle));
+                other.artistTitle == artistTitle) &&
+            (identical(other.artistDisplay, artistDisplay) ||
+                other.artistDisplay == artistDisplay) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, title, thumbnail, imageId, dateDisplay, artistTitle);
+  int get hashCode => Object.hash(runtimeType, id, title, thumbnail, imageId,
+      dateDisplay, artistTitle, artistDisplay, description);
 
   @JsonKey(ignore: true)
   @override
@@ -246,7 +282,9 @@ abstract class _Artwork implements Artwork {
       required final Thumbnail thumbnail,
       required final String imageId,
       final String? dateDisplay,
-      final String? artistTitle}) = _$ArtworkImpl;
+      final String? artistTitle,
+      final String? artistDisplay,
+      final String? description}) = _$ArtworkImpl;
 
   factory _Artwork.fromJson(Map<String, dynamic> json) = _$ArtworkImpl.fromJson;
 
@@ -262,6 +300,10 @@ abstract class _Artwork implements Artwork {
   String? get dateDisplay;
   @override
   String? get artistTitle;
+  @override
+  String? get artistDisplay;
+  @override
+  String? get description;
   @override
   @JsonKey(ignore: true)
   _$$ArtworkImplCopyWith<_$ArtworkImpl> get copyWith =>

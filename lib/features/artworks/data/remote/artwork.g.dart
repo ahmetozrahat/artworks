@@ -14,6 +14,8 @@ _$ArtworkImpl _$$ArtworkImplFromJson(Map<String, dynamic> json) =>
       imageId: json['image_id'] as String,
       dateDisplay: json['date_display'] as String?,
       artistTitle: json['artist_title'] as String?,
+      artistDisplay: json['artist_display'] as String?,
+      description: json['description'] as String?,
     );
 
 Map<String, dynamic> _$$ArtworkImplToJson(_$ArtworkImpl instance) =>
@@ -24,4 +26,6 @@ Map<String, dynamic> _$$ArtworkImplToJson(_$ArtworkImpl instance) =>
       'image_id': instance.imageId,
       'date_display': instance.dateDisplay,
       'artist_title': instance.artistTitle,
+      'artist_display': instance.artistDisplay,
+      'description': instance.description,
     };
