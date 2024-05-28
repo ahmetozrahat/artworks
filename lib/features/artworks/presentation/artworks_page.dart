@@ -27,16 +27,21 @@ class _ArtworksPageState extends State<ArtworksPage> {
           onRefresh: () => Future.sync(
             () => _pagingController.refresh(),
           ),
-          child: PagedMasonryGridView.count(
-            pagingController: _pagingController,
-            builderDelegate: PagedChildBuilderDelegate<Artwork>(
-              itemBuilder: (context, item, index) => ArtworkCard(
-                artwork: item,
-                onPressed: (id) => context.navigator
-                    .pushNamed(ArtworkDetailPage.routeName, arguments: item),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: PagedMasonryGridView.count(
+              mainAxisSpacing: 4,
+              crossAxisSpacing: 4,
+              pagingController: _pagingController,
+              builderDelegate: PagedChildBuilderDelegate<Artwork>(
+                itemBuilder: (context, item, index) => ArtworkCard(
+                  artwork: item,
+                  onPressed: (id) => context.navigator
+                      .pushNamed(ArtworkDetailPage.routeName, arguments: item),
+                ),
               ),
+              crossAxisCount: 2,
             ),
-            crossAxisCount: 2,
           ),
         ),
       );
