@@ -37,6 +37,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/translations/
+    - assets/images/
   # fonts:
   #   - family: Schyler
   #     fonts:

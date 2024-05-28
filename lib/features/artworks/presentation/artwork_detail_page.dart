@@ -20,19 +20,19 @@ class ArtworkDetailPage extends StatefulWidget {
 }
 
 class _ArtworkDetailPageState extends State<ArtworkDetailPage> {
-  Widget _buildImage() => widget.artwork.imageId != null
-      ? Hero(
-          tag: widget.artwork.id,
-          child: SizedBox(
-            width: double.infinity,
-            child: Image.network(
-              Helpers.getArtworkImageUrl(widget.artwork.imageId!),
-              semanticLabel: widget.artwork.thumbnail?.altText ?? "",
-              fit: BoxFit.fitWidth,
-            ),
-          ),
-        )
-      : const Text("Hata");
+  Widget _buildImage() => Hero(
+        tag: widget.artwork.id,
+        child: SizedBox(
+          width: double.infinity,
+          child: widget.artwork.imageId != null
+              ? Image.network(
+                  Helpers.getArtworkImageUrl(widget.artwork.imageId!),
+                  semanticLabel: widget.artwork.thumbnail?.altText ?? "",
+                  fit: BoxFit.fitWidth,
+                )
+              : Image.asset("assets/images/placeholder.png"),
+        ),
+      );
 
   Widget _buildTitle() => Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
@@ -63,7 +63,8 @@ class _ArtworkDetailPageState extends State<ArtworkDetailPage> {
       );
 
   Widget _buildDescription() => Padding(
-        padding: const EdgeInsets.only(left: 16, right: 16, top: 32),
+        padding:
+            const EdgeInsets.only(left: 16, right: 16, top: 32, bottom: 32),
         child: HtmlWidget(
           widget.artwork.description ?? "",
           textStyle: context.textTheme.bodyLarge,
