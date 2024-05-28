@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
@@ -24,13 +25,13 @@ class _ArtworkDetailPageState extends State<ArtworkDetailPage> {
         tag: widget.artwork.id,
         child: SizedBox(
           width: double.infinity,
-          child: widget.artwork.imageId != null
-              ? Image.network(
-                  Helpers.getArtworkImageUrl(widget.artwork.imageId!),
-                  semanticLabel: widget.artwork.thumbnail?.altText ?? "",
-                  fit: BoxFit.fitWidth,
-                )
-              : Image.asset("assets/images/placeholder.png"),
+          child: CachedNetworkImage(
+            imageUrl: widget.artwork.imageId != null
+                ? Helpers.getArtworkImageUrl(widget.artwork.imageId!)
+                : "",
+            errorWidget: (context, url, error) =>
+                Image.asset("assets/images/placeholder.png"),
+          ),
         ),
       );
 

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/helpers/helpers.dart';
@@ -24,12 +25,13 @@ class ArtworkCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 child: Hero(
                   tag: artwork.id,
-                  child: artwork.imageId != null
-                      ? Image.network(
-                          Helpers.getArtworkImageUrl(artwork.imageId!),
-                          semanticLabel: artwork.thumbnail?.altText ?? "",
-                        )
-                      : Image.asset("assets/images/placeholder.png"),
+                  child: CachedNetworkImage(
+                    imageUrl: artwork.imageId != null
+                        ? Helpers.getArtworkImageUrl(artwork.imageId!)
+                        : "",
+                    errorWidget: (context, url, error) =>
+                        Image.asset("assets/images/placeholder.png"),
+                  ),
                 ),
               ),
               Padding(

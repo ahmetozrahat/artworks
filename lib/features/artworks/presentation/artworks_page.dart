@@ -22,16 +22,23 @@ class _ArtworksPageState extends State<ArtworksPage> {
   final PagingController<int, Artwork> _pagingController =
       PagingController(firstPageKey: 1);
 
-  Widget _buildUi() => PagedMasonryGridView.count(
-        pagingController: _pagingController,
-        builderDelegate: PagedChildBuilderDelegate<Artwork>(
-          itemBuilder: (context, item, index) => ArtworkCard(
-            artwork: item,
-            onPressed: (id) => context.navigator
-                .pushNamed(ArtworkDetailPage.routeName, arguments: item),
+  Widget _buildUi() => SafeArea(
+        child: RefreshIndicator(
+          onRefresh: () => Future.sync(
+            () => _pagingController.refresh(),
+          ),
+          child: PagedMasonryGridView.count(
+            pagingController: _pagingController,
+            builderDelegate: PagedChildBuilderDelegate<Artwork>(
+              itemBuilder: (context, item, index) => ArtworkCard(
+                artwork: item,
+                onPressed: (id) => context.navigator
+                    .pushNamed(ArtworkDetailPage.routeName, arguments: item),
+              ),
+            ),
+            crossAxisCount: 2,
           ),
         ),
-        crossAxisCount: 2,
       );
 
   @override
