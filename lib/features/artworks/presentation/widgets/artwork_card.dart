@@ -20,16 +20,17 @@ class ArtworkCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Hero(
-                  tag: artwork.id,
-                  child: Image.network(
-                    Helpers.getArtworkImageUrl(artwork.imageId),
-                    semanticLabel: artwork.thumbnail.altText,
+              if (artwork.imageId != null)
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Hero(
+                    tag: artwork.id,
+                    child: Image.network(
+                      Helpers.getArtworkImageUrl(artwork.imageId!),
+                      semanticLabel: artwork.thumbnail?.altText ?? "",
+                    ),
                   ),
                 ),
-              ),
               Padding(
                 padding: EdgeInsets.only(
                     left: 12,

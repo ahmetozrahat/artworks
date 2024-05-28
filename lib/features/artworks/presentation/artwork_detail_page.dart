@@ -20,22 +20,24 @@ class ArtworkDetailPage extends StatefulWidget {
 }
 
 class _ArtworkDetailPageState extends State<ArtworkDetailPage> {
-  Widget _buildImage() => Hero(
-        tag: widget.artwork.id,
-        child: SizedBox(
-          width: double.infinity,
-          child: Image.network(
-            Helpers.getArtworkImageUrl(widget.artwork.imageId),
-            semanticLabel: widget.artwork.thumbnail.altText,
-            fit: BoxFit.fitWidth,
+  Widget _buildImage() => widget.artwork.imageId != null
+      ? Hero(
+          tag: widget.artwork.id,
+          child: SizedBox(
+            width: double.infinity,
+            child: Image.network(
+              Helpers.getArtworkImageUrl(widget.artwork.imageId!),
+              semanticLabel: widget.artwork.thumbnail?.altText ?? "",
+              fit: BoxFit.fitWidth,
+            ),
           ),
-        ),
-      );
+        )
+      : const Text("Hata");
 
   Widget _buildTitle() => Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
         child: Text(
-          widget.artwork.title,
+          widget.artwork.title ?? "",
           style: context.textTheme.headlineLarge,
         ),
       );

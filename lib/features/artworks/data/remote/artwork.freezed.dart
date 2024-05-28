@@ -21,9 +21,9 @@ Artwork _$ArtworkFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Artwork {
   int get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  Thumbnail get thumbnail => throw _privateConstructorUsedError;
-  String get imageId => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
+  Thumbnail? get thumbnail => throw _privateConstructorUsedError;
+  String? get imageId => throw _privateConstructorUsedError;
   String? get dateDisplay => throw _privateConstructorUsedError;
   String? get artistTitle => throw _privateConstructorUsedError;
   String? get artistDisplay => throw _privateConstructorUsedError;
@@ -41,15 +41,15 @@ abstract class $ArtworkCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String title,
-      Thumbnail thumbnail,
-      String imageId,
+      String? title,
+      Thumbnail? thumbnail,
+      String? imageId,
       String? dateDisplay,
       String? artistTitle,
       String? artistDisplay,
       String? description});
 
-  $ThumbnailCopyWith<$Res> get thumbnail;
+  $ThumbnailCopyWith<$Res>? get thumbnail;
 }
 
 /// @nodoc
@@ -66,9 +66,9 @@ class _$ArtworkCopyWithImpl<$Res, $Val extends Artwork>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
-    Object? thumbnail = null,
-    Object? imageId = null,
+    Object? title = freezed,
+    Object? thumbnail = freezed,
+    Object? imageId = freezed,
     Object? dateDisplay = freezed,
     Object? artistTitle = freezed,
     Object? artistDisplay = freezed,
@@ -79,18 +79,18 @@ class _$ArtworkCopyWithImpl<$Res, $Val extends Artwork>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      thumbnail: null == thumbnail
+              as String?,
+      thumbnail: freezed == thumbnail
           ? _value.thumbnail
           : thumbnail // ignore: cast_nullable_to_non_nullable
-              as Thumbnail,
-      imageId: null == imageId
+              as Thumbnail?,
+      imageId: freezed == imageId
           ? _value.imageId
           : imageId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dateDisplay: freezed == dateDisplay
           ? _value.dateDisplay
           : dateDisplay // ignore: cast_nullable_to_non_nullable
@@ -112,8 +112,12 @@ class _$ArtworkCopyWithImpl<$Res, $Val extends Artwork>
 
   @override
   @pragma('vm:prefer-inline')
-  $ThumbnailCopyWith<$Res> get thumbnail {
-    return $ThumbnailCopyWith<$Res>(_value.thumbnail, (value) {
+  $ThumbnailCopyWith<$Res>? get thumbnail {
+    if (_value.thumbnail == null) {
+      return null;
+    }
+
+    return $ThumbnailCopyWith<$Res>(_value.thumbnail!, (value) {
       return _then(_value.copyWith(thumbnail: value) as $Val);
     });
   }
@@ -128,16 +132,16 @@ abstract class _$$ArtworkImplCopyWith<$Res> implements $ArtworkCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String title,
-      Thumbnail thumbnail,
-      String imageId,
+      String? title,
+      Thumbnail? thumbnail,
+      String? imageId,
       String? dateDisplay,
       String? artistTitle,
       String? artistDisplay,
       String? description});
 
   @override
-  $ThumbnailCopyWith<$Res> get thumbnail;
+  $ThumbnailCopyWith<$Res>? get thumbnail;
 }
 
 /// @nodoc
@@ -152,9 +156,9 @@ class __$$ArtworkImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
-    Object? thumbnail = null,
-    Object? imageId = null,
+    Object? title = freezed,
+    Object? thumbnail = freezed,
+    Object? imageId = freezed,
     Object? dateDisplay = freezed,
     Object? artistTitle = freezed,
     Object? artistDisplay = freezed,
@@ -165,18 +169,18 @@ class __$$ArtworkImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      thumbnail: null == thumbnail
+              as String?,
+      thumbnail: freezed == thumbnail
           ? _value.thumbnail
           : thumbnail // ignore: cast_nullable_to_non_nullable
-              as Thumbnail,
-      imageId: null == imageId
+              as Thumbnail?,
+      imageId: freezed == imageId
           ? _value.imageId
           : imageId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       dateDisplay: freezed == dateDisplay
           ? _value.dateDisplay
           : dateDisplay // ignore: cast_nullable_to_non_nullable
@@ -203,9 +207,9 @@ class __$$ArtworkImplCopyWithImpl<$Res>
 class _$ArtworkImpl implements _Artwork {
   const _$ArtworkImpl(
       {required this.id,
-      required this.title,
-      required this.thumbnail,
-      required this.imageId,
+      this.title,
+      this.thumbnail,
+      this.imageId,
       this.dateDisplay,
       this.artistTitle,
       this.artistDisplay,
@@ -217,11 +221,11 @@ class _$ArtworkImpl implements _Artwork {
   @override
   final int id;
   @override
-  final String title;
+  final String? title;
   @override
-  final Thumbnail thumbnail;
+  final Thumbnail? thumbnail;
   @override
-  final String imageId;
+  final String? imageId;
   @override
   final String? dateDisplay;
   @override
@@ -278,9 +282,9 @@ class _$ArtworkImpl implements _Artwork {
 abstract class _Artwork implements Artwork {
   const factory _Artwork(
       {required final int id,
-      required final String title,
-      required final Thumbnail thumbnail,
-      required final String imageId,
+      final String? title,
+      final Thumbnail? thumbnail,
+      final String? imageId,
       final String? dateDisplay,
       final String? artistTitle,
       final String? artistDisplay,
@@ -291,11 +295,11 @@ abstract class _Artwork implements Artwork {
   @override
   int get id;
   @override
-  String get title;
+  String? get title;
   @override
-  Thumbnail get thumbnail;
+  Thumbnail? get thumbnail;
   @override
-  String get imageId;
+  String? get imageId;
   @override
   String? get dateDisplay;
   @override

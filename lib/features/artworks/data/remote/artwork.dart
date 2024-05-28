@@ -10,9 +10,9 @@ class Artwork with _$Artwork {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory Artwork({
     required int id,
-    required String title,
-    required Thumbnail thumbnail,
-    required String imageId,
+    String? title,
+    Thumbnail? thumbnail,
+    String? imageId,
     String? dateDisplay,
     String? artistTitle,
     String? artistDisplay,

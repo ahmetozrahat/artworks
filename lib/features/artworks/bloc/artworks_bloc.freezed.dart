@@ -16,19 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ArtworksEvent {
+  int get page => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchArtworks,
+    required TResult Function(int page) fetchArtworks,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchArtworks,
+    TResult? Function(int page)? fetchArtworks,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchArtworks,
+    TResult Function(int page)? fetchArtworks,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +49,10 @@ mixin _$ArtworksEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ArtworksEventCopyWith<ArtworksEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -55,6 +60,8 @@ abstract class $ArtworksEventCopyWith<$Res> {
   factory $ArtworksEventCopyWith(
           ArtworksEvent value, $Res Function(ArtworksEvent) then) =
       _$ArtworksEventCopyWithImpl<$Res, ArtworksEvent>;
+  @useResult
+  $Res call({int page});
 }
 
 /// @nodoc
@@ -66,13 +73,30 @@ class _$ArtworksEventCopyWithImpl<$Res, $Val extends ArtworksEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? page = null,
+  }) {
+    return _then(_value.copyWith(
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$FetchArtworksImplCopyWith<$Res> {
+abstract class _$$FetchArtworksImplCopyWith<$Res>
+    implements $ArtworksEventCopyWith<$Res> {
   factory _$$FetchArtworksImplCopyWith(
           _$FetchArtworksImpl value, $Res Function(_$FetchArtworksImpl) then) =
       __$$FetchArtworksImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int page});
 }
 
 /// @nodoc
@@ -82,51 +106,75 @@ class __$$FetchArtworksImplCopyWithImpl<$Res>
   __$$FetchArtworksImplCopyWithImpl(
       _$FetchArtworksImpl _value, $Res Function(_$FetchArtworksImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? page = null,
+  }) {
+    return _then(_$FetchArtworksImpl(
+      null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$FetchArtworksImpl implements _FetchArtworks {
-  const _$FetchArtworksImpl();
+  const _$FetchArtworksImpl(this.page);
+
+  @override
+  final int page;
 
   @override
   String toString() {
-    return 'ArtworksEvent.fetchArtworks()';
+    return 'ArtworksEvent.fetchArtworks(page: $page)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$FetchArtworksImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$FetchArtworksImpl &&
+            (identical(other.page, page) || other.page == page));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, page);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchArtworksImplCopyWith<_$FetchArtworksImpl> get copyWith =>
+      __$$FetchArtworksImplCopyWithImpl<_$FetchArtworksImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetchArtworks,
+    required TResult Function(int page) fetchArtworks,
   }) {
-    return fetchArtworks();
+    return fetchArtworks(page);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetchArtworks,
+    TResult? Function(int page)? fetchArtworks,
   }) {
-    return fetchArtworks?.call();
+    return fetchArtworks?.call(page);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchArtworks,
+    TResult Function(int page)? fetchArtworks,
     required TResult orElse(),
   }) {
     if (fetchArtworks != null) {
-      return fetchArtworks();
+      return fetchArtworks(page);
     }
     return orElse();
   }
@@ -161,7 +209,14 @@ class _$FetchArtworksImpl implements _FetchArtworks {
 }
 
 abstract class _FetchArtworks implements ArtworksEvent {
-  const factory _FetchArtworks() = _$FetchArtworksImpl;
+  const factory _FetchArtworks(final int page) = _$FetchArtworksImpl;
+
+  @override
+  int get page;
+  @override
+  @JsonKey(ignore: true)
+  _$$FetchArtworksImplCopyWith<_$FetchArtworksImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

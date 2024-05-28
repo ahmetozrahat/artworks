@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../core/helpers/extensions/context_extensions.dart';
 import '../bloc/artworks_bloc.dart';
+import '../data/remote/artwork.dart';
 import 'artwork_detail_page.dart';
 import 'widgets/artwork_card.dart';
 
@@ -18,39 +19,33 @@ class ArtworksPage extends StatefulWidget {
 
 class _ArtworksPageState extends State<ArtworksPage> {
   final _artworksBloc = ArtworksBloc();
+  final PagingController<int, Artwork> _pagingController =
+      PagingController(firstPageKey: 1);
 
-  Widget _buildUi() => _artworksBloc.state.maybeWhen(
-        success: (artworkResponse) => SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: RefreshIndicator(
-              onRefresh: () async =>
-                  _artworksBloc.add(const ArtworksEvent.fetchArtworks()),
-              child: MasonryGridView.count(
-                crossAxisCount: 2,
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
-                itemCount: artworkResponse.artworks.length,
-                itemBuilder: (context, index) {
-                  var artwork = artworkResponse.artworks[index];
-                  return ArtworkCard(
-                    artwork: artwork,
-                    onPressed: (id) => context.navigator.pushNamed(
-                        ArtworkDetailPage.routeName,
-                        arguments: artwork),
-                  );
-                },
-              ),
-            ),
+  Widget _buildUi() => PagedMasonryGridView.count(
+        pagingController: _pagingController,
+        builderDelegate: PagedChildBuilderDelegate<Artwork>(
+          itemBuilder: (context, item, index) => ArtworkCard(
+            artwork: item,
+            onPressed: (id) => context.navigator
+                .pushNamed(ArtworkDetailPage.routeName, arguments: item),
           ),
         ),
-        orElse: () => Container(),
+        crossAxisCount: 2,
       );
 
   @override
   void initState() {
     super.initState();
-    _artworksBloc.add(const ArtworksEvent.fetchArtworks());
+    _pagingController.addPageRequestListener((pageKey) {
+      _artworksBloc.add(ArtworksEvent.fetchArtworks(pageKey));
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pagingController.dispose();
   }
 
   @override
@@ -59,18 +54,30 @@ class _ArtworksPageState extends State<ArtworksPage> {
       appBar: AppBar(
         title: const Text("Artworks App"),
       ),
-      body: BlocBuilder<ArtworksBloc, ArtworksState>(
+      body: BlocConsumer<ArtworksBloc, ArtworksState>(
         bloc: _artworksBloc,
+        listener: (context, state) {
+          state.maybeWhen(
+            success: (artworkResponse) {
+              final isLastPage = artworkResponse.artworks.length <
+                  artworkResponse.pagination.limit;
+              if (isLastPage) {
+                _pagingController.appendLastPage(artworkResponse.artworks);
+              } else {
+                _pagingController.appendPage(artworkResponse.artworks,
+                    artworkResponse.pagination.currentPage + 1);
+              }
+            },
+            failure: (errorMessage) => _pagingController.error = errorMessage,
+            orElse: () {},
+          );
+        },
         builder: (context, state) {
           return state.maybeWhen(
-            loading: () => const Center(
-              child: CircularProgressIndicator(),
+            failure: (errorMessage) => Center(
+              child: Text(errorMessage),
             ),
-            success: (artworkResponse) => _buildUi(),
-            failure: (errorMessage) => const Center(
-              child: Text("Hata"),
-            ),
-            orElse: () => Container(),
+            orElse: () => _buildUi(),
           );
         },
       ),

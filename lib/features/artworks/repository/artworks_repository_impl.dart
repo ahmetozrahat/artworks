@@ -10,8 +10,14 @@ class ArtworksRepositoryImpl implements ArtworksRepository {
   final String _pathPrefix = "artworks";
 
   @override
-  Future<ArtworkResponse> getArtworks() async {
-    var response = await locator.get<DioClient>().dio.get(_pathPrefix);
+  Future<ArtworkResponse> getArtworks(int page) async {
+    var response = await locator.get<DioClient>().dio.get(
+      _pathPrefix,
+      queryParameters: {
+        "page": page,
+        "limit": 15,
+      },
+    );
 
     var pagination = Pagination.fromJson(response.data["pagination"]);
     List<Artwork> artworks = (response.data["data"] as List)

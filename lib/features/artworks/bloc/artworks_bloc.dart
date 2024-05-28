@@ -20,9 +20,9 @@ class ArtworksBloc extends Bloc<ArtworksEvent, ArtworksState> {
   FutureOr<void> onFetchArtworksEvent(
       _FetchArtworks event, Emitter<ArtworksState> emit) async {
     emit(const ArtworksState.loading());
-
     try {
-      var response = await locator.get<ArtworksRepository>().getArtworks();
+      var response =
+          await locator.get<ArtworksRepository>().getArtworks(event.page);
       emit(ArtworksState.success(artworkResponse: response));
     } on DioException catch (e) {
       emit(ArtworksState.failure(errorMessage: e.error.toString()));
