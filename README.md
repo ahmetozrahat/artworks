@@ -162,9 +162,9 @@ Bu proje aşağıdaki paketler kullanılarak oluşturulmuştur:
 
 ## Ekran Görüntüleri
 
-Home Page | Detail Page
+Ana Sayfa | Detay Sayfası
 :---:|:---:
-![Home Page](https://github.com/ahmetozrahat/artworks-mobile/blob/main/screenshots/ss-1.png) | ![Detail Page](https://github.com/ahmetozrahat/artworks-mobile/blob/main/screenshots/ss-2.png)
+![Ana Sayfa](https://github.com/ahmetozrahat/artworks-mobile/blob/main/screenshots/ss-1.png) | ![Detay Sayfası](https://github.com/ahmetozrahat/artworks-mobile/blob/main/screenshots/ss-2.png)
 
 ## Özellikler
 
