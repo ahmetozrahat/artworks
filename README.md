@@ -73,8 +73,9 @@ This project built with these packages:
 
 ## Screenshots
 
-<img src="./screenshots/ss-1.png" width="300">
-<img src="./screenshots/ss-2.png" width="300">
+Home Page | Detail Page
+:---:|:---:
+![Home Page](https://github.com/ahmetozrahat/artworks-mobile/blob/main/screenshots/ss-1.png) | ![Detail Page](https://github.com/ahmetozrahat/artworks-mobile/blob/main/screenshots/ss-2.png)
 
 ## Features
 
@@ -161,8 +162,9 @@ Bu proje aşağıdaki paketler kullanılarak oluşturulmuştur:
 
 ## Ekran Görüntüleri
 
-<img src="./screenshots/ss-1.png" width="300">
-<img src="./screenshots/ss-2.png" width="300">
+Home Page | Detail Page
+:---:|:---:
+![Home Page](https://github.com/ahmetozrahat/artworks-mobile/blob/main/screenshots/ss-1.png) | ![Detail Page](https://github.com/ahmetozrahat/artworks-mobile/blob/main/screenshots/ss-2.png)
 
 ## Özellikler
 
